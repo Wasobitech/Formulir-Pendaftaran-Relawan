@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Relawan - Yayasan Sahabat Kemanusiaan Nusantara (YSKN)</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#eb0a59',
+                            dark: '#c40849',
+                            light: '#ff3377',
+                            soft: '#ffe6ee',
+                            glow: 'rgba(235, 10, 89, 0.25)'
+                        },
+                        slateDark: '#0f172a',
+                        slateCard: '#1e293b'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'app': '0 8px 30px rgba(0, 0, 0, 0.08)',
+                        'brand': '0 10px 25px -5px rgba(235, 10, 89, 0.4)',
+                        'glow': '0 0 20px rgba(235, 10, 89, 0.35)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Smooth Scroll & Touch Ergonomics */
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #eb0a59;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .active-tab {
+            color: #eb0a59 !important;
+            border-bottom: 2px solid #eb0a59;
+            font-weight: 700;
+        }
+
+        .nav-item-active {
+            color: #eb0a59;
+            background-color: #ffe6ee;
+        }
+
+        .step-active {
+            background-color: #eb0a59;
+            color: white;
+            border-color: #eb0a59;
+        }
+
+        .step-complete {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        /* Pulsing Glow Effect for Badges */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(235, 10, 89, 0.4); }
+            50% { box-shadow: 0 0 22px rgba(235, 10, 89, 0.8); }
+        }
+        .pulse-glow {
+            animation: pulseGlow 2.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans min-h-screen pb-20 md:pb-0 md:pl-64">
+
+    <!-- DESKTOP SIDEBAR (Visible on md and larger) -->
+    <aside class="hidden md:flex flex-col fixed top-0 left-0 h-screen w-64 bg-slate-900 text-white z-40 shadow-2xl border-r border-slate-800 justify-between">
+        <div>
+            <!-- Sidebar Header / Logo -->
+            <div class="p-5 border-b border-slate-800 flex items-center space-x-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-dark to-brand flex items-center justify-center text-white text-xl font-black shadow-brand">
+                    YS
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-base tracking-tight text-white leading-tight">YSKN</h1>
+                    <p class="text-[10px] text-slate-400 font-medium leading-none mt-1">Sahabat Kemanusiaan</p>
+                </div>
+            </div>
+
+            <!-- Sidebar Navigation Links -->
+            <nav class="p-4 space-y-1.5">
+                <a href="#beranda" onclick="setActiveNav('beranda')" id="side-beranda" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                    <i class="bi bi-house-door text-lg"></i>
+                    <span>Beranda</span>
+                </a>
+                <a href="#divisi" onclick="setActiveNav('divisi')" id="side-divisi" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                    <i class="bi bi-grid-1x2 text-lg"></i>
+                    <span>Divisi Relawan</span>
+                </a>
+                <a href="#pendaftaran" onclick="setActiveNav('pendaftaran')" id="side-pendaftaran" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                    <i class="bi bi-person-plus text-lg"></i>
+                    <span>Form Pendaftaran</span>
+                </a>
+                <a href="#tracker" onclick="setActiveNav('tracker')" id="side-tracker" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                    <i class="bi bi-card-checklist text-lg"></i>
+                    <span>Status Saya</span>
+                </a>
+                <a href="#kontak" onclick="setActiveNav('kontak')" id="side-kontak" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                    <i class="bi bi-geo-alt text-lg"></i>
+                    <span>Kontak & Lokasi</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Sidebar Bottom Quick Actions -->
+        <div class="p-4 border-t border-slate-800 space-y-2">
+            <a href="https://wa.me/628132220572" target="_blank" rel="noopener" class="flex items-center justify-center space-x-2 w-full py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs transition shadow-sm">
+                <i class="bi bi-whatsapp text-sm"></i>
+                <span>Hubungi WA YSKN</span>
+            </a>
+            <div class="text-[11px] text-center text-slate-500 pt-1">
+                &copy; 2026 YSKN Indonesia
+            </div>
+        </div>
+    </aside>
+
+    <!-- TOP HEADER (Mobile & Tablet Bar) -->
+    <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 py-3 flex items-center justify-between shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-xl bg-brand flex items-center justify-center text-white font-bold text-sm shadow-brand md:hidden">
+                YS
+            </div>
+            <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-brand block leading-none">YSKN Relawan</span>
+                <span class="text-sm font-extrabold text-slate-900 leading-tight">Sahabat Kemanusiaan</span>
+            </div>
+        </div>
+
+        <!-- Quick Action Buttons -->
+        <div class="flex items-center space-x-2">
+            <a href="https://wa.me/628132220572" target="_blank" title="WhatsApp YSKN" class="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition border border-emerald-200">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="mailto:info.yskn@gmail.com" title="Email YSKN" class="w-9 h-9 rounded-full bg-slate-100 text-slate-700 hover:bg-brand hover:text-white flex items-center justify-center transition border border-slate-200">
+                <i class="bi bi-envelope"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-6xl mx-auto px-4 py-6 space-y-12">
+
+        <!-- HERO SECTION -->
+        <section id="beranda" class="scroll-mt-20">
+            <div class="relative overflow-hidden rounded-3xl bg-slate-900 text-white shadow-2xl p-6 sm:p-10 lg:p-12">
+                <!-- Decorative Glow Background Elements -->
+                <div class="absolute -top-24 -right-24 w-80 h-80 bg-brand/30 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-emerald-500/20 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-2xl">
+                    <!-- Status Badge -->
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-brand-soft mb-5">
+                        <span class="w-2 h-2 rounded-full bg-brand pulse-glow"></span>
+                        <span>Open Recruitment Relawan YSKN 2026</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white mb-4">
+                        Ulurkan Tangan, <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-light via-brand to-rose-400">Jadilah Agent Kebajikan</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+                        Bersama <strong>Yayasan Sahabat Kemanusiaan Nusantara (YSKN)</strong>, energi dan kepedulian Anda disalurkan langsung untuk program tanggap bencana, pendidikan anak marginal, hingga layanan kesehatan sosial masyarakat.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-3.5">
+                        <a href="#pendaftaran" class="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-sm shadow-brand transition transform active:scale-95">
+                            <i class="bi bi-pencil-square text-lg"></i>
+                            <span>Daftar Relawan Sekarang</span>
+                        </a>
+                        <a href="#divisi" class="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/15 backdrop-blur-md transition">
+                            <i class="bi bi-compass text-lg"></i>
+                            <span>Jelajahi Divisi</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stats Quick View Grid -->
+                <div class="mt-10 pt-8 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                    <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
+                        <p class="text-2xl font-black text-white">1.2K+</p>
+                        <p class="text-xs text-slate-400 mt-1">Penerima Manfaat</p>
+                    </div>
+                    <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
+                        <p class="text-2xl font-black text-white">450+</p>
+                        <p class="text-xs text-slate-400 mt-1">Relawan Terdaftar</p>
+                    </div>
+                    <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
+                        <p class="text-2xl font-black text-white">18+</p>
+                        <p class="text-xs text-slate-400 mt-1">Aksi Sosial</p>
+                    </div>
+                    <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
+                        <p class="text-2xl font-black text-white">4</p>
+                        <p class="text-xs text-slate-400 mt-1">Divisi Utama</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: DIVISI RELAWAN -->
+        <section id="divisi" class="scroll-mt-20">
+            <div class="text-center max-w-xl mx-auto mb-8">
+                <span class="text-brand font-extrabold text-xs tracking-widest uppercase bg-brand-soft px-3 py-1 rounded-full">Bidang Pengabdian</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Pilih Divisi Relawan YSKN</h2>
+                <p class="text-slate-600 text-xs sm:text-sm mt-1">Pilih ruang kontribusi yang sesuai dengan minat, kualifikasi, dan passion Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Card 1: Pendidikan -->
+                <div class="glass-card rounded-2xl p-6 shadow-app hover:shadow-xl transition-all duration-300 border hover:border-brand/50 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition">
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Pendidikan & Pengajaran</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Mengajar anak-anak kurang mampu, bimbingan belajar gratis, workshop keterampilan, serta literasi digital.
+                        </p>
+                    </div>
+                    <button onclick="selectDivisiAndScroll('Pendidikan & Pengajaran')" class="w-full py-2 text-xs font-bold text-brand bg-brand-soft hover:bg-brand hover:text-white rounded-xl transition">
+                        Pilih Divisi Ini
+                    </button>
+                </div>
+
+                <!-- Card 2: Bencana & Logistik -->
+                <div class="glass-card rounded-2xl p-6 shadow-app hover:shadow-xl transition-all duration-300 border hover:border-brand/50 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 group-hover:bg-rose-600 group-hover:text-white transition">
+                            <i class="bi bi-shield-shaded"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Bencana & Logistik</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Tim Reaksi Cepat (TRC) tanggap darurat, manajemen dapur umum, pendistribusian logistik, dan evakuasi.
+                        </p>
+                    </div>
+                    <button onclick="selectDivisiAndScroll('Bencana & Tanggap Darurat')" class="w-full py-2 text-xs font-bold text-brand bg-brand-soft hover:bg-brand hover:text-white rounded-xl transition">
+                        Pilih Divisi Ini
+                    </button>
+                </div>
+
+                <!-- Card 3: Kesehatan Masyarakat -->
+                <div class="glass-card rounded-2xl p-6 shadow-app hover:shadow-xl transition-all duration-300 border hover:border-brand/50 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Kesehatan Masyarakat</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Pemeriksaan kesehatan gratis, penyuluhan gizi & stunting, aksi donor darah, serta dukungan psikososial.
+                        </p>
+                    </div>
+                    <button onclick="selectDivisiAndScroll('Kesehatan Masyarakat')" class="w-full py-2 text-xs font-bold text-brand bg-brand-soft hover:bg-brand hover:text-white rounded-xl transition">
+                        Pilih Divisi Ini
+                    </button>
+                </div>
+
+                <!-- Card 4: Penggalangan Dana & Media -->
+                <div class="glass-card rounded-2xl p-6 shadow-app hover:shadow-xl transition-all duration-300 border hover:border-brand/50 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition">
+                            <i class="bi bi-camera-reels"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Media & Fundraising</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Dokumentasi visual, pengelolaan media sosial, pembuatan konten kreatif, kampanye kebaikan, & penggalangan dana.
+                        </p>
+                    </div>
+                    <button onclick="selectDivisiAndScroll('Media, Kreatif & Fundraising')" class="w-full py-2 text-xs font-bold text-brand bg-brand-soft hover:bg-brand hover:text-white rounded-xl transition">
+                        Pilih Divisi Ini
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: FORM PENDAFTARAN (INTERAKTIF MULTI-STEP) -->
+        <section id="pendaftaran" class="scroll-mt-20">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                
+                <!-- Form Header -->
+                <div class="bg-slate-900 p-6 sm:p-8 text-white relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs font-bold text-brand uppercase tracking-wider">Formulir Pendaftaran</span>
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-white mt-1">Registrasi Relawan YSKN</h2>
+                            <p class="text-slate-400 text-xs mt-1">Lengkapi formulir di bawah ini dengan informasi yang valid.</p>
+                        </div>
+                        <div class="text-xs text-slate-300 bg-slate-800/80 px-3.5 py-2 rounded-xl border border-slate-700/80 self-start sm:self-auto">
+                            <i class="bi bi-clock-history text-brand mr-1"></i> Proses ± 3 Menit
+                        </div>
+                    </div>
+
+                    <!-- Step Progress Indicator -->
+                    <div class="mt-8 grid grid-cols-3 gap-2">
+                        <div id="step-indicator-1" class="flex flex-col items-center p-2 rounded-xl border transition-all text-center">
+                            <span class="w-7 h-7 rounded-full bg-brand text-white font-bold text-xs flex items-center justify-center mb-1">1</span>
+                            <span class="text-[11px] font-semibold text-white">Data Diri</span>
+                        </div>
+                        <div id="step-indicator-2" class="flex flex-col items-center p-2 rounded-xl border border-slate-800 text-slate-500 text-center transition-all">
+                            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 font-bold text-xs flex items-center justify-center mb-1">2</span>
+                            <span class="text-[11px] font-semibold">Minat & Keahlian</span>
+                        </div>
+                        <div id="step-indicator-3" class="flex flex-col items-center p-2 rounded-xl border border-slate-800 text-slate-500 text-center transition-all">
+                            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 font-bold text-xs flex items-center justify-center mb-1">3</span>
+                            <span class="text-[11px] font-semibold">Komitmen & Berkas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORM BODY -->
+                <form id="formRelawan" class="p-6 sm:p-8 space-y-6" onsubmit="handleFormSubmit(event)">
+                    
+                    <!-- STEP 1: DATA DIRI -->
+                    <div id="step-1" class="space-y-4">
+                        <h3 class="text-base font-extrabold text-slate-900 border-b pb-2 flex items-center space-x-2">
+                            <i class="bi bi-person-vcard text-brand"></i>
+                            <span>Langkah 1: Identitas Diri</span>
+                        </h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">Nama Lengkap *</label>
+                                <input type="text" id="namaLengkap" required placeholder="Contoh: Ahmad Subagja" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">NIK / Nomor ID Identitas *</label>
+                                <input type="number" id="nik" required placeholder="16 digit No. KTP / Kartu Pelajar" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">Tanggal Lahir *</label>
+                                <input type="date" id="tanggalLahir" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">Jenis Kelamin *</label>
+                                <select id="jenisKelamin" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition bg-white">
+                                    <option value="">-- Pilih Jenis Kelamin --</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">No. WhatsApp / HP Active *</label>
+                                <input type="tel" id="noHp" required placeholder="08123456789" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">Alamat Email *</label>
+                                <input type="email" id="email" required placeholder="nama@email.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Domisili / Kota Tempat Tinggal *</label>
+                            <input type="text" id="domisili" required placeholder="Contoh: Kota Bekasi / Jakarta Timur" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
+                        </div>
+
+                        <div class="pt-4 flex justify-end">
+                            <button type="button" onclick="goToStep(2)" class="px-6 py-2.5 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-sm shadow-brand transition">
+                                Lanjut: Minat Divisi <i class="bi bi-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: MINAT & KEAHLIAN -->
+                    <div id="step-2" class="space-y-4 hidden">
+                        <h3 class="text-base font-extrabold text-slate-900 border-b pb-2 flex items-center space-x-2">
+                            <i class="bi bi-stars text-brand"></i>
+                            <span>Langkah 2: Divisi & Pengalaman</span>
+                        </h3>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Pilihan Divisi Utama *</label>
+                            <select id="divisiUtama" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition bg-white">
+                                <option value="">-- Pilih Divisi Prioritas --</option>
+                                <option value="Pendidikan & Pengajaran">Pendidikan & Pengajaran</option>
+                                <option value="Bencana & Tanggap Darurat">Bencana & Tanggap Darurat</option>
+                                <option value="Kesehatan Masyarakat">Kesehatan Masyarakat</option>
+                                <option value="Media, Kreatif & Fundraising">Media, Kreatif & Fundraising</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-2">Keahlian Khusus yang Dimiliki (Bisa Pilih >1)</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
+                                    <input type="checkbox" name="skills" value="Pertolongan Pertama / Kebencanaan" class="rounded text-brand focus:ring-brand">
+                                    <span>P3K / SAR</span>
+                                </label>
+                                <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
+                                    <input type="checkbox" name="skills" value="Mengajar / Facilitator" class="rounded text-brand focus:ring-brand">
+                                    <span>Mengajar / Edukasi</span>
+                                </label>
+                                <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
+                                    <input type="checkbox" name="skills" value="Fotografi & Videografi" class="rounded text-brand focus:ring-brand">
+                                    <span>Foto / Video</span>
+                                </label>
+                                <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
+                                    <input type="checkbox" name="skills" value="Desain Grafis / Copywriting" class="rounded text-brand focus:ring-brand">
+                                    <span>Desain / Social Media</span>
+                                </label>
+                                <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
+                                    <input type="checkbox" name="skills" value="Manajemen Logistik / Dapur" class="rounded text-brand focus:ring-brand">
+                                    <span>Logistik / Dapur Umum</span>
+                                </label>
+                                <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
+                                    <input type="checkbox" name="skills" value="Tenaga Medis / Kesehatan" class="rounded text-brand focus:ring-brand">
+                                    <span>Kesehatan / Medis</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Pengalaman Relawan & Motivasi Singkat *</label>
+                            <textarea id="motivasi" required rows="3" placeholder="Tuliskan alasan Anda ingin bergabung dengan YSKN dan pengalaman sosial sebelumnya..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"></textarea>
+                        </div>
+
+                        <div class="pt-4 flex justify-between">
+                            <button type="button" onclick="goToStep(1)" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition">
+                                <i class="bi bi-arrow-left mr-1"></i> Kembali
+                            </button>
+                            <button type="button" onclick="goToStep(3)" class="px-6 py-2.5 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-sm shadow-brand transition">
+                                Lanjut: Ketersediaan <i class="bi bi-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: KETERSEDIAAN & CONFIRMATION -->
+                    <div id="step-3" class="space-y-4 hidden">
+                        <h3 class="text-base font-extrabold text-slate-900 border-b pb-2 flex items-center space-x-2">
+                            <i class="bi bi-calendar-check text-brand"></i>
+                            <span>Langkah 3: Komitmen Ketersediaan & Dokumen</span>
+                        </h3>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Ketersediaan Waktu *</label>
+                            <select id="ketersediaan" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition bg-white">
+                                <option value="">-- Pilih Ketersediaan --</option>
+                                <option value="Akhir Pekan (Sabtu & Minggu)">Akhir Pekan (Sabtu & Minggu)</option>
+                                <option value="Fleksibel (Hari Kerja / Sesuai Agenda)">Fleksibel (Hari Kerja / Sesuai Agenda)</option>
+                                <option value="Siap On-Call (Tanggap Darurat Bencana)">Siap On-Call (Tanggap Darurat Bencana)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Unggah Curriculum Vitae / Identitas (Opsional Simulasi)</label>
+                            <div class="border-2 border-dashed border-slate-300 rounded-2xl p-4 text-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer" onclick="document.getElementById('dokumenInput').click()">
+                                <i class="bi bi-cloud-arrow-up text-2xl text-brand"></i>
+                                <p id="fileNameDisplay" class="text-xs text-slate-600 font-medium mt-1">Klik untuk memilih file PDF / JPG (Maks. 5MB)</p>
+                                <input type="file" id="dokumenInput" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileSelected(event)">
+                            </div>
+                        </div>
+
+                        <!-- Persetujuan Syarat & Ketentuan -->
+                        <div class="p-4 bg-brand-soft/50 rounded-2xl border border-brand/20">
+                            <label class="flex items-start space-x-3 cursor-pointer">
+                                <input type="checkbox" required class="mt-1 rounded text-brand focus:ring-brand">
+                                <span class="text-xs text-slate-700 leading-relaxed">
+                                    Saya menyatakan bahwa data yang saya isikan adalah benar. Saya bersedia mematuhi Kode Etik Relawan **Yayasan Sahabat Kemanusiaan Nusantara (YSKN)** dan berkontribusi secara sukarela.
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="pt-4 flex justify-between">
+                            <button type="button" onclick="goToStep(2)" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition">
+                                <i class="bi bi-arrow-left mr-1"></i> Kembali
+                            </button>
+                            <button type="submit" class="px-8 py-3 rounded-xl bg-brand hover:bg-brand-dark text-white font-extrabold text-sm shadow-brand transition transform active:scale-95 flex items-center space-x-2">
+                                <i class="bi bi-send-check text-lg"></i>
+                                <span>Kirim Pendaftaran</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECTION: STATUS & RIWAYAT PENDAFTARAN (LOCALSTORAGE TRACKER) -->
+        <section id="tracker" class="scroll-mt-20">
+            <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-app border border-slate-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4 mb-6 gap-3">
+                    <div>
+                        <div class="inline-flex items-center space-x-1.5 text-xs font-bold text-brand bg-brand-soft px-3 py-1 rounded-full mb-1">
+                            <i class="bi bi-person-badge"></i>
+                            <span>Realtime Local Storage Tracker</span>
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">Status Pendaftaran Anda</h2>
+                        <p class="text-xs text-slate-500">Formulir pendaftaran yang tersimpan di perangkat ini.</p>
+                    </div>
+                    <button onclick="clearLocalStorage()" class="text-xs font-semibold text-rose-600 hover:text-rose-800 flex items-center space-x-1 self-start sm:self-auto">
+                        <i class="bi bi-trash"></i>
+                        <span>Hapus Riwayat Local</span>
+                    </button>
+                </div>
+
+                <!-- Empty State -->
+                <div id="trackerEmptyState" class="text-center py-10 space-y-3">
+                    <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto text-2xl">
+                        <i class="bi bi-inbox"></i>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-600">Belum ada formulir pendaftaran yang dikirim.</p>
+                    <p class="text-xs text-slate-400 max-w-sm mx-auto">Silakan isi formulir pendaftaran relawan di atas untuk memantau status secara langsung.</p>
+                </div>
+
+                <!-- Active Status Card Container -->
+                <div id="trackerDataContent" class="hidden space-y-4">
+                    <!-- Dynamic Data Inject Here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: KONTAK & LOKASI YSKN -->
+        <section id="kontak" class="scroll-mt-20">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Contact Info Card -->
+                <div class="lg:col-span-1 glass-card rounded-3xl p-6 sm:p-8 shadow-app flex flex-col justify-between border border-slate-200">
+                    <div>
+                        <span class="text-xs font-bold text-brand uppercase tracking-wider">Sekretariat YSKN</span>
+                        <h2 class="text-2xl font-black text-slate-900 mt-1 mb-4">Hubungi Kami</h2>
+                        
+                        <div class="space-y-4 text-xs sm:text-sm">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-9 h-9 rounded-xl bg-brand-soft text-brand flex items-center justify-center text-lg shrink-0 mt-0.5">
+                                    <i class="bi bi-geo-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-900">Alamat Lengkap</p>
+                                    <p class="text-slate-600 mt-0.5 leading-relaxed">
+                                        Jl. Taman Wisma Asri II, Blok: DD-28 No. 1, Teluk Pucung, Bekasi Utara, Kota Bekasi (17121) Indonesia
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg shrink-0 mt-0.5">
+                                    <i class="bi bi-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-900">WhatsApp / Telepon</p>
+                                    <a href="https://wa.me/628132220572" target="_blank" class="text-slate-600 hover:text-emerald-600 font-medium">
+                                        +62 813-2220-572
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg shrink-0 mt-0.5">
+                                    <i class="bi bi-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-900">Email Resmi</p>
+                                    <a href="mailto:info.yskn@gmail.com" class="text-slate-600 hover:text-brand font-medium">
+                                        info.yskn@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg shrink-0 mt-0.5">
+                                    <i class="bi bi-globe"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-900">Website Utama</p>
+                                    <a href="https://www.yskn.or.id" target="_blank" rel="noopener" class="text-brand font-semibold hover:underline">
+                                        www.yskn.or.id
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 mt-6 border-t border-slate-200">
+                        <a href="https://maps.google.com/?q=Jl.+Taman+Wisma+Asri+II,+Blok+DD-28+No.+1,+Teluk+Pucung,+Bekasi+Utara" target="_blank" rel="noopener" class="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center space-x-2 transition shadow-lg">
+                            <i class="bi bi-map"></i>
+                            <span>Buka Google Maps Navigasi</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Google Maps Embed Container -->
+                <div class="lg:col-span-2 rounded-3xl overflow-hidden shadow-app border border-slate-200 min-h-[320px] bg-slate-200 relative">
+                    <iframe 
+                        title="Peta Lokasi YSKN Bekasi" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d107.0012!3d-6.2000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698c56c23db2d5%3A0x62957b44781ff738!2sBekasi%20Utara%2C%20Bekasi%20City%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; min-height: 380px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-200">
+            <p>&copy; 2026 Yayasan Sahabat Kemanusiaan Nusantara (YSKN). Seluruh Hak Cipta Dilindungi.</p>
+            <p class="mt-1 text-slate-400">Jl. Taman Wisma Asri II, Bekasi Utara, Kota Bekasi, Indonesia.</p>
+        </footer>
+    </main>
+
+    <!-- MOBILE BOTTOM NAVIGATION (App-Style Experience) -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-slate-200 px-3 py-2 z-50 flex justify-around items-center shadow-lg">
+        <a href="#beranda" onclick="setActiveNav('beranda')" id="mob-beranda" class="flex flex-col items-center py-1 px-3 text-slate-500 hover:text-brand transition text-center">
+            <i class="bi bi-house-door text-xl leading-none"></i>
+            <span class="text-[10px] font-semibold mt-1">Beranda</span>
+        </a>
+        <a href="#divisi" onclick="setActiveNav('divisi')" id="mob-divisi" class="flex flex-col items-center py-1 px-3 text-slate-500 hover:text-brand transition text-center">
+            <i class="bi bi-grid-1x2 text-xl leading-none"></i>
+            <span class="text-[10px] font-semibold mt-1">Divisi</span>
+        </a>
+        <a href="#pendaftaran" onclick="setActiveNav('pendaftaran')" id="mob-pendaftaran" class="flex flex-col items-center py-1 px-3 text-brand transition text-center font-bold">
+            <div class="w-10 h-10 -mt-5 rounded-full bg-brand text-white flex items-center justify-center text-lg shadow-brand border-2 border-white">
+                <i class="bi bi-pencil-square"></i>
+            </div>
+            <span class="text-[10px] font-bold mt-1 text-brand">Daftar</span>
+        </a>
+        <a href="#tracker" onclick="setActiveNav('tracker')" id="mob-tracker" class="flex flex-col items-center py-1 px-3 text-slate-500 hover:text-brand transition text-center">
+            <i class="bi bi-card-checklist text-xl leading-none"></i>
+            <span class="text-[10px] font-semibold mt-1">Status</span>
+        </a>
+        <a href="#kontak" onclick="setActiveNav('kontak')" id="mob-kontak" class="flex flex-col items-center py-1 px-3 text-slate-500 hover:text-brand transition text-center">
+            <i class="bi bi-geo-alt text-xl leading-none"></i>
+            <span class="text-[10px] font-semibold mt-1">Kontak</span>
+        </a>
+    </nav>
+
+    <!-- SUCCESS MODAL POPUP -->
+    <div id="successModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden transition-all duration-300">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 text-center shadow-2xl transform transition-all border border-slate-100">
+            <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">Pendaftaran Berhasil!</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Terima kasih telah mendaftar sebagai relawan **YSKN**. Data Anda telah disimpan. Tim kami akan menghubungi Anda melalui WhatsApp / Email untuk tahap verifikasi.
+            </p>
+
+            <div id="modalDataSummary" class="mt-4 p-3.5 bg-slate-50 rounded-2xl text-left border border-slate-200 text-xs space-y-1.5">
+                <!-- Summary Inject -->
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-2">
+                <button onclick="closeModalAndGoTracker()" class="w-full py-3 rounded-xl bg-brand text-white font-bold text-xs shadow-brand hover:bg-brand-dark transition">
+                    Lihat Status Saya
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // State Management
+        let currentStep = 1;
+        const LOCAL_STORAGE_KEY = 'YSKN_RELAWAN_REGISTRATION';
+
+        // Initialize on Load
+        window.addEventListener('load', () => {
+            renderTrackerData();
+            setActiveNav('beranda');
+        });
+
+        // Function to switch form steps
+        function goToStep(step) {
+            if (step > currentStep) {
+                // Basic Validation before advancing
+                if (currentStep === 1) {
+                    const nama = document.getElementById('namaLengkap').value;
+                    const nik = document.getElementById('nik').value;
+                    const noHp = document.getElementById('noHp').value;
+                    const email = document.getElementById('email').value;
+
+                    if (!nama || !nik || !noHp || !email) {
+                        alert('Harap lengkapi seluruh data identitas wajib pada Langkah 1 terlebih dahulu.');
+                        return;
+                    }
+                }
+                if (currentStep === 2) {
+                    const divisi = document.getElementById('divisiUtama').value;
+                    const motivasi = document.getElementById('motivasi').value;
+                    if (!divisi || !motivasi) {
+                        alert('Harap pilih divisi utama dan tuliskan motivasi singkat Anda.');
+                        return;
+                    }
+                }
+            }
+
+            // Hide all steps
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-3').classList.add('hidden');
+
+            // Show current step
+            document.getElementById(`step-${step}`).classList.remove('hidden');
+            currentStep = step;
+
+            // Update Indicators
+            updateStepIndicators(step);
+        }
+
+        function updateStepIndicators(step) {
+            for (let i = 1; i <= 3; i++) {
+                const el = document.getElementById(`step-indicator-${i}`);
+                if (i === step) {
+                    el.className = 'flex flex-col items-center p-2 rounded-xl border border-brand bg-brand/10 text-brand text-center transition-all';
+                    el.children[0].className = 'w-7 h-7 rounded-full bg-brand text-white font-bold text-xs flex items-center justify-center mb-1';
+                } else if (i < step) {
+                    el.className = 'flex flex-col items-center p-2 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-600 text-center transition-all';
+                    el.children[0].className = 'w-7 h-7 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center mb-1';
+                } else {
+                    el.className = 'flex flex-col items-center p-2 rounded-xl border border-slate-800 text-slate-500 text-center transition-all';
+                    el.children[0].className = 'w-7 h-7 rounded-full bg-slate-800 text-slate-400 font-bold text-xs flex items-center justify-center mb-1';
+                }
+            }
+        }
+
+        // Division selection from cards
+        function selectDivisiAndScroll(divisiName) {
+            document.getElementById('divisiUtama').value = divisiName;
+            const target = document.getElementById('pendaftaran');
+            target.scrollIntoView({ behavior: 'smooth' });
+            goToStep(2);
+        }
+
+        // File Selection Feedback
+        function handleFileSelected(event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('fileNameDisplay').textContent = `Terpilih: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+                document.getElementById('fileNameDisplay').classList.add('text-brand', 'font-bold');
+            }
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            // Collect Checkboxes
+            const selectedSkills = [];
+            document.querySelectorAll('input[name="skills"]:checked').forEach(cb => {
+                selectedSkills.push(cb.value);
+            });
+
+            // Generate Registration ID
+            const regId = 'YSKN-' + Math.floor(100000 + Math.random() * 900000);
+            const today = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            const formData = {
+                id: regId,
+                tanggal: today,
+                nama: document.getElementById('namaLengkap').value,
+                nik: document.getElementById('nik').value,
+                tglLahir: document.getElementById('tanggalLahir').value,
+                jk: document.getElementById('jenisKelamin').value,
+                hp: document.getElementById('noHp').value,
+                email: document.getElementById('email').value,
+                domisili: document.getElementById('domisili').value,
+                divisi: document.getElementById('divisiUtama').value,
+                skills: selectedSkills,
+                motivasi: document.getElementById('motivasi').value,
+                ketersediaan: document.getElementById('ketersediaan').value,
+                status: 'Terverifikasi Sementaras / Menunggu Wawancara'
+            };
+
+            // Save to LocalStorage
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
+
+            // Render Modal Summary
+            document.getElementById('modalDataSummary').innerHTML = `
+                <p><strong>ID Pendaftaran:</strong> <span class="text-brand font-mono">${formData.id}</span></p>
+                <p><strong>Nama:</strong> ${formData.nama}</p>
+                <p><strong>Divisi:</strong> ${formData.divisi}</p>
+                <p><strong>Status:</strong> <span class="text-emerald-600 font-semibold">${formData.status}</span></p>
+            `;
+
+            // Display Modal
+            document.getElementById('successModal').classList.remove('hidden');
+
+            // Refresh Tracker
+            renderTrackerData();
+        }
+
+        function closeModalAndGoTracker() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('tracker').scrollIntoView({ behavior: 'smooth' });
+            setActiveNav('tracker');
+        }
+
+        // Render LocalStorage Data
+        function renderTrackerData() {
+            const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+            const emptyState = document.getElementById('trackerEmptyState');
+            const contentContainer = document.getElementById('trackerDataContent');
+
+            if (!savedData) {
+                emptyState.classList.remove('hidden');
+                contentContainer.classList.add('hidden');
+                return;
+            }
+
+            const data = JSON.parse(savedData);
+            emptyState.classList.add('hidden');
+            contentContainer.classList.remove('hidden');
+
+            contentContainer.innerHTML = `
+                <div class="bg-slate-900 text-white rounded-2xl p-5 border border-slate-800 shadow-md">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-3 mb-3 gap-2">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider text-slate-400 font-bold block">Nomor Registrasi</span>
+                            <span class="text-lg font-black text-brand font-mono">${data.id}</span>
+                        </div>
+                        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full text-xs font-semibold">
+                            <i class="bi bi-clock-history mr-1"></i> Data Tersimpan Aktiv
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-300">
+                        <div>
+                            <p class="text-slate-400 text-[11px]">Nama Lengkap:</p>
+                            <p class="font-bold text-white">${data.nama}</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-[11px]">Divisi Dipilih:</p>
+                            <p class="font-bold text-brand-light">${data.divisi}</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-[11px]">No. WhatsApp:</p>
+                            <p class="font-bold text-white">${data.hp}</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-[11px]">Ketersediaan Waktu:</p>
+                            <p class="font-bold text-white">${data.ketersediaan}</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs">
+                        <span class="text-slate-400">Tanggal Daftar: ${data.tanggal}</span>
+                        <a href="https://wa.me/628132220572?text=Halo%20YSKN,%20saya%20sudah%20mendaftar%20relawan%20dengan%20ID%20${data.id}" target="_blank" class="text-emerald-400 font-bold hover:underline flex items-center space-x-1">
+                            <i class="bi bi-whatsapp"></i>
+                            <span>Konfirmasi ke WA Admin</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Clear LocalStorage Handler
+        function clearLocalStorage() {
+            if (confirm('Apakah Anda yakin ingin menghapus data riwayat pendaftaran relawan di perangkat ini?')) {
+                localStorage.removeItem(LOCAL_STORAGE_KEY);
+                renderTrackerData();
+            }
+        }
+
+        // Active Nav Indicator Highlight
+        function setActiveNav(sectionId) {
+            const navIds = ['beranda', 'divisi', 'pendaftaran', 'tracker', 'kontak'];
+            navIds.forEach(id => {
+                const mobEl = document.getElementById(`mob-${id}`);
+                const sideEl = document.getElementById(`side-${id}`);
+
+                if (mobEl) {
+                    if (id === sectionId) {
+                        mobEl.classList.add('text-brand', 'font-bold');
+                        mobEl.classList.remove('text-slate-500');
+                    } else {
+                        mobEl.classList.remove('text-brand', 'font-bold');
+                        mobEl.classList.add('text-slate-500');
+                    }
+                }
+
+                if (sideEl) {
+                    if (id === sectionId) {
+                        sideEl.classList.add('bg-brand', 'text-white');
+                        sideEl.classList.remove('text-slate-300', 'hover:bg-slate-800');
+                    } else {
+                        sideEl.classList.remove('bg-brand', 'text-white');
+                        sideEl.classList.add('text-slate-300', 'hover:bg-slate-800');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
