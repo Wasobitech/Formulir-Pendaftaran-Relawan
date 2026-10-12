@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendaftaran Relawan - Yayasan Sahabat Kemanusiaan Nusantara (YSKN)</title>
+    <title>YSKN App | Portal Resmi & Pendaftaran Relawan Yayasan Sahabat Kemanusiaan Nusantara</title>
 
     <!-- Google Fonts: Plus Jakarta Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,29 +73,6 @@
             border: 1px solid rgba(226, 232, 240, 0.8);
         }
 
-        .active-tab {
-            color: #eb0a59 !important;
-            border-bottom: 2px solid #eb0a59;
-            font-weight: 700;
-        }
-
-        .nav-item-active {
-            color: #eb0a59;
-            background-color: #ffe6ee;
-        }
-
-        .step-active {
-            background-color: #eb0a59;
-            color: white;
-            border-color: #eb0a59;
-        }
-
-        .step-complete {
-            background-color: #10b981;
-            color: white;
-            border-color: #10b981;
-        }
-
         /* Pulsing Glow Effect for Badges */
         @keyframes pulseGlow {
             0%, 100% { box-shadow: 0 0 10px rgba(235, 10, 89, 0.4); }
@@ -108,7 +85,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans min-h-screen pb-20 md:pb-0 md:pl-64">
 
-    <!-- DESKTOP SIDEBAR (Visible on md and larger) -->
+    <!-- DESKTOP SIDEBAR -->
     <aside class="hidden md:flex flex-col fixed top-0 left-0 h-screen w-64 bg-slate-900 text-white z-40 shadow-2xl border-r border-slate-800 justify-between">
         <div>
             <!-- Sidebar Header / Logo -->
@@ -117,30 +94,34 @@
                     YS
                 </div>
                 <div>
-                    <h1 class="font-extrabold text-base tracking-tight text-white leading-tight">YSKN</h1>
+                    <h1 class="font-extrabold text-base tracking-tight text-white leading-tight">YSKN App</h1>
                     <p class="text-[10px] text-slate-400 font-medium leading-none mt-1">Sahabat Kemanusiaan</p>
                 </div>
             </div>
 
             <!-- Sidebar Navigation Links -->
             <nav class="p-4 space-y-1.5">
-                <a href="#beranda" onclick="setActiveNav('beranda')" id="side-beranda" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                <a href="#beranda" onclick="setActiveNav('beranda')" id="side-beranda" class="nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
                     <i class="bi bi-house-door text-lg"></i>
                     <span>Beranda</span>
                 </a>
-                <a href="#divisi" onclick="setActiveNav('divisi')" id="side-divisi" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
-                    <i class="bi bi-grid-1x2 text-lg"></i>
-                    <span>Divisi Relawan</span>
+                <a href="#filosofi" onclick="setActiveNav('filosofi')" id="side-filosofi" class="nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                    <i class="bi bi-shield-heart text-lg"></i>
+                    <span>Filosofi & Nilai</span>
                 </a>
-                <a href="#pendaftaran" onclick="setActiveNav('pendaftaran')" id="side-pendaftaran" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                <a href="#program" onclick="setActiveNav('program')" id="side-program" class="nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                    <i class="bi bi-layers text-lg"></i>
+                    <span>Program & Kolaborasi</span>
+                </a>
+                <a href="#pendaftaran" onclick="setActiveNav('pendaftaran')" id="side-pendaftaran" class="nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
                     <i class="bi bi-person-plus text-lg"></i>
-                    <span>Form Pendaftaran</span>
+                    <span>Form Relawan</span>
                 </a>
-                <a href="#tracker" onclick="setActiveNav('tracker')" id="side-tracker" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                <a href="#tracker" onclick="setActiveNav('tracker')" id="side-tracker" class="nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
                     <i class="bi bi-card-checklist text-lg"></i>
                     <span>Status Saya</span>
                 </a>
-                <a href="#kontak" onclick="setActiveNav('kontak')" id="side-kontak" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
+                <a href="#kontak" onclick="setActiveNav('kontak')" id="side-kontak" class="nav-item flex items-center space-x-3 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200">
                     <i class="bi bi-geo-alt text-lg"></i>
                     <span>Kontak & Lokasi</span>
                 </a>
@@ -151,7 +132,7 @@
         <div class="p-4 border-t border-slate-800 space-y-2">
             <a href="https://wa.me/628132220572" target="_blank" rel="noopener" class="flex items-center justify-center space-x-2 w-full py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs transition shadow-sm">
                 <i class="bi bi-whatsapp text-sm"></i>
-                <span>Hubungi WA YSKN</span>
+                <span>WhatsApp YSKN</span>
             </a>
             <div class="text-[11px] text-center text-slate-500 pt-1">
                 &copy; 2026 YSKN Indonesia
@@ -166,8 +147,8 @@
                 YS
             </div>
             <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-brand block leading-none">YSKN Relawan</span>
-                <span class="text-sm font-extrabold text-slate-900 leading-tight">Sahabat Kemanusiaan</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-brand block leading-none">YSKN App</span>
+                <span class="text-sm font-extrabold text-slate-900 leading-tight">Sahabat Kemanusiaan Nusantara</span>
             </div>
         </div>
 
@@ -188,33 +169,31 @@
         <!-- HERO SECTION -->
         <section id="beranda" class="scroll-mt-20">
             <div class="relative overflow-hidden rounded-3xl bg-slate-900 text-white shadow-2xl p-6 sm:p-10 lg:p-12">
-                <!-- Decorative Glow Background Elements -->
                 <div class="absolute -top-24 -right-24 w-80 h-80 bg-brand/30 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-emerald-500/20 rounded-full blur-2xl pointer-events-none"></div>
 
                 <div class="relative z-10 max-w-2xl">
-                    <!-- Status Badge -->
                     <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-brand-soft mb-5">
                         <span class="w-2 h-2 rounded-full bg-brand pulse-glow"></span>
-                        <span>Open Recruitment Relawan YSKN 2026</span>
+                        <span>Filosofi: Pamong, Bukan Penolong</span>
                     </div>
 
                     <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white mb-4">
-                        Ulurkan Tangan, <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-light via-brand to-rose-400">Jadilah Agent Kebajikan</span>
+                        Berjalan Beriringan, <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-light via-brand to-rose-400">Menguatkan Harapan Nusantara</span>
                     </h1>
 
                     <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
-                        Bersama <strong>Yayasan Sahabat Kemanusiaan Nusantara (YSKN)</strong>, energi dan kepedulian Anda disalurkan langsung untuk program tanggap bencana, pendidikan anak marginal, hingga layanan kesehatan sosial masyarakat.
+                        Selamat datang di portal resmi <strong>Yayasan Sahabat Kemanusiaan Nusantara (YSKN)</strong>. Kami hadir membangun kemandirian masyarakat melalui pendekatan setara, kearifan lokal, serta kolaborasi strategis bersama pemerintah.
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-3.5">
                         <a href="#pendaftaran" class="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-sm shadow-brand transition transform active:scale-95">
                             <i class="bi bi-pencil-square text-lg"></i>
-                            <span>Daftar Relawan Sekarang</span>
+                            <span>Daftar Relawan YSKN</span>
                         </a>
-                        <a href="#divisi" class="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/15 backdrop-blur-md transition">
-                            <i class="bi bi-compass text-lg"></i>
-                            <span>Jelajahi Divisi</span>
+                        <a href="#program" class="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/15 backdrop-blur-md transition">
+                            <i class="bi bi-layers text-lg"></i>
+                            <span>Program & Sinergi Pemerintah</span>
                         </a>
                     </div>
                 </div>
@@ -222,111 +201,158 @@
                 <!-- Stats Quick View Grid -->
                 <div class="mt-10 pt-8 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
                     <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
-                        <p class="text-2xl font-black text-white">1.2K+</p>
-                        <p class="text-xs text-slate-400 mt-1">Penerima Manfaat</p>
+                        <p class="text-2xl font-black text-white">5</p>
+                        <p class="text-xs text-slate-400 mt-1">Panca Karsa</p>
                     </div>
                     <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
-                        <p class="text-2xl font-black text-white">450+</p>
-                        <p class="text-xs text-slate-400 mt-1">Relawan Terdaftar</p>
+                        <p class="text-2xl font-black text-white">3</p>
+                        <p class="text-xs text-slate-400 mt-1">Pilar Program</p>
                     </div>
                     <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
-                        <p class="text-2xl font-black text-white">18+</p>
-                        <p class="text-xs text-slate-400 mt-1">Aksi Sosial</p>
+                        <p class="text-2xl font-black text-white">100%</p>
+                        <p class="text-xs text-slate-400 mt-1">Transparansi Bening Budi</p>
                     </div>
                     <div class="p-3 bg-white/5 rounded-2xl border border-white/5">
-                        <p class="text-2xl font-black text-white">4</p>
-                        <p class="text-xs text-slate-400 mt-1">Divisi Utama</p>
+                        <p class="text-2xl font-black text-white">Resmi</p>
+                        <p class="text-xs text-slate-400 mt-1">Mitra Pemerintah</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: DIVISI RELAWAN -->
-        <section id="divisi" class="scroll-mt-20">
-            <div class="text-center max-w-xl mx-auto mb-8">
-                <span class="text-brand font-extrabold text-xs tracking-widest uppercase bg-brand-soft px-3 py-1 rounded-full">Bidang Pengabdian</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Pilih Divisi Relawan YSKN</h2>
-                <p class="text-slate-600 text-xs sm:text-sm mt-1">Pilih ruang kontribusi yang sesuai dengan minat, kualifikasi, dan passion Anda.</p>
+        <!-- SECTION: FILOSOFI & NILAI (PANCA KARSA NUSANTARA) -->
+        <section id="filosofi" class="scroll-mt-20">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-brand font-extrabold text-xs tracking-widest uppercase bg-brand-soft px-3 py-1 rounded-full">Filosofi Eksklusif YSKN</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">"Pamong, Bukan Penolong"</h2>
+                <p class="text-slate-600 text-xs sm:text-sm mt-2">
+                    Kami tidak memposisikan diri sebagai juru selamat yang datang dari atas, melainkan sahabat yang duduk setara dan berjalan beriringan bersama semua umat manusia.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <!-- Card 1: Pendidikan -->
-                <div class="glass-card rounded-2xl p-6 shadow-app hover:shadow-xl transition-all duration-300 border hover:border-brand/50 group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition">
-                            <i class="bi bi-book"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-lg mb-2">Pendidikan & Pengajaran</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Mengajar anak-anak kurang mampu, bimbingan belajar gratis, workshop keterampilan, serta literasi digital.
-                        </p>
+            <!-- Panca Karsa Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="glass-card rounded-2xl p-6 shadow-app border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-brand-soft text-brand flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="bi bi-heart-fill"></i>
                     </div>
-                    <button onclick="selectDivisiAndScroll('Pendidikan & Pengajaran')" class="w-full py-2 text-xs font-bold text-brand bg-brand-soft hover:bg-brand hover:text-white rounded-xl transition">
-                        Pilih Divisi Ini
-                    </button>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">1. Karsa Nirmala</h3>
+                    <p class="text-xs font-semibold text-brand mb-2">Niat & Tindakan Suci Tanpa Ego</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Memberi tanpa glorifikasi lembaga atau <em>poverty porn</em>. Menjaga martabat dan harga diri penerima bantuan secara mutlak.
+                    </p>
                 </div>
 
-                <!-- Card 2: Bencana & Logistik -->
-                <div class="glass-card rounded-2xl p-6 shadow-app hover:shadow-xl transition-all duration-300 border hover:border-brand/50 group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 group-hover:bg-rose-600 group-hover:text-white transition">
-                            <i class="bi bi-shield-shaded"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-lg mb-2">Bencana & Logistik</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Tim Reaksi Cepat (TRC) tanggap darurat, manajemen dapur umum, pendistribusian logistik, dan evakuasi.
-                        </p>
+                <div class="glass-card rounded-2xl p-6 shadow-app border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="bi bi-diagram-3-fill"></i>
                     </div>
-                    <button onclick="selectDivisiAndScroll('Bencana & Tanggap Darurat')" class="w-full py-2 text-xs font-bold text-brand bg-brand-soft hover:bg-brand hover:text-white rounded-xl transition">
-                        Pilih Divisi Ini
-                    </button>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">2. Setara Mengakar</h3>
+                    <p class="text-xs font-semibold text-blue-600 mb-2">Empati & Kearifan Lokal</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Duduk sama rendah, berdiri sama tinggi. Program disesuaikan dengan adat, budaya, dan kearifan masyarakat setempat.
+                    </p>
                 </div>
 
-                <!-- Card 3: Kesehatan Masyarakat -->
-                <div class="glass-card rounded-2xl p-6 shadow-app hover:shadow-xl transition-all duration-300 border hover:border-brand/50 group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition">
-                            <i class="bi bi-heart-pulse"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-lg mb-2">Kesehatan Masyarakat</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Pemeriksaan kesehatan gratis, penyuluhan gizi & stunting, aksi donor darah, serta dukungan psikososial.
-                        </p>
+                <div class="glass-card rounded-2xl p-6 shadow-app border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="bi bi-arrow-repeat"></i>
                     </div>
-                    <button onclick="selectDivisiAndScroll('Kesehatan Masyarakat')" class="w-full py-2 text-xs font-bold text-brand bg-brand-soft hover:bg-brand hover:text-white rounded-xl transition">
-                        Pilih Divisi Ini
-                    </button>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">3. Daya Lenting</h3>
+                    <p class="text-xs font-semibold text-emerald-600 mb-2">Ketangguhan & Resiliensi</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Fokus pada pemulihan jangka panjang agar komunitas mandiri dan mampu bangkit dari krisis secara berkelanjutan.
+                    </p>
                 </div>
 
-                <!-- Card 4: Penggalangan Dana & Media -->
-                <div class="glass-card rounded-2xl p-6 shadow-app hover:shadow-xl transition-all duration-300 border hover:border-brand/50 group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition">
-                            <i class="bi bi-camera-reels"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-lg mb-2">Media & Fundraising</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                            Dokumentasi visual, pengelolaan media sosial, pembuatan konten kreatif, kampanye kebaikan, & penggalangan dana.
-                        </p>
+                <div class="glass-card rounded-2xl p-6 shadow-app border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="bi bi-people-fill"></i>
                     </div>
-                    <button onclick="selectDivisiAndScroll('Media, Kreatif & Fundraising')" class="w-full py-2 text-xs font-bold text-brand bg-brand-soft hover:bg-brand hover:text-white rounded-xl transition">
-                        Pilih Divisi Ini
-                    </button>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">4. Rampak Harmoni</h3>
+                    <p class="text-xs font-semibold text-purple-600 mb-2">Kolaborasi Gotong Royong</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Bergerak serentak dalam satu ritme bersama pemerintah, donor, relawan, dan warga dalam semangat sinergi lintas sektor.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 shadow-app border border-slate-200 md:col-span-2">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="bi bi-droplet-half"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">5. Bening Budi</h3>
+                    <p class="text-xs font-semibold text-sky-600 mb-2">Transparansi Radikal & Akuntabilitas</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Pengelolaan dana dan pelaporan program dilakukan setransparan air yang bening. Membuka akses <em>open dashboard</em> bagi publik dan mitra untuk merawat amanah secara mutlak.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: FORM PENDAFTARAN (INTERAKTIF MULTI-STEP) -->
+        <!-- SECTION: PROGRAM & KOLABORASI PEMERINTAH -->
+        <section id="program" class="scroll-mt-20">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-brand font-extrabold text-xs tracking-widest uppercase bg-brand-soft px-3 py-1 rounded-full">Aksi Nyata & Kemitraan</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Rumpun Sahabat Berdaya & Sinergi Pemerintah</h2>
+                <p class="text-slate-600 text-xs sm:text-sm mt-2">
+                    YSKN bertindak sebagai mitra strategis (<em>co-implementation partner</em>) pemerintah dalam mengoptimalkan intervensi sosial di tingkat akar rumput.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Pilar 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-app border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-brand-soft text-brand flex items-center justify-center font-bold">1</div>
+                            <h3 class="font-bold text-slate-900 text-base">Karsa Kasih (Tanggap Krisis)</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Respons cepat logistik darurat dan pendampingan psikososial bencana. Bersinergi dengan BNPB & Dinas Sosial dengan tetap menjaga kerahasiaan martabat warga (<em>Karsa Nirmala</em>).
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-semibold text-brand bg-brand-soft px-3 py-1 rounded-lg self-start">Pilar Tanggap Darurat</span>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-app border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">2</div>
+                            <h3 class="font-bold text-slate-900 text-base">Lingkar Akar (Pemetaan Lokal)</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Pemetaan potensi desa & <em>Focus Group Discussion</em> (<b>FGD</b>) bersama tokoh adat. Memastikan program makro pemerintah membumi sesuai budaya lokal (<em>Setara Mengakar</em>).
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-lg self-start">Pilar Pemulihan Budaya</span>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-app border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">3</div>
+                            <h3 class="font-bold text-slate-900 text-base">Pos Lenting (Mandiri Ekonomi)</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Transformasi keluarga rentan penerima bansos negara menjadi mandiri melalui modal usaha bergulir, vokasi, dan literasi keuangan bersama Kementerian Sosial & Kemendes.
+                        </p>
+                    </div>
+                    <span class="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-lg self-start">Pilar Pemberdayaan / Exit Strategy</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: FORM PENDAFTARAN RELAWAN -->
         <section id="pendaftaran" class="scroll-mt-20">
             <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
-                
-                <!-- Form Header -->
                 <div class="bg-slate-900 p-6 sm:p-8 text-white relative">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div>
-                            <span class="text-xs font-bold text-brand uppercase tracking-wider">Formulir Pendaftaran</span>
-                            <h2 class="text-xl sm:text-2xl font-extrabold text-white mt-1">Registrasi Relawan YSKN</h2>
-                            <p class="text-slate-400 text-xs mt-1">Lengkapi formulir di bawah ini dengan informasi yang valid.</p>
+                            <span class="text-xs font-bold text-brand uppercase tracking-wider">Bergabung Sebagai Relawan</span>
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-white mt-1">Formulir Pendaftaran Relawan YSKN</h2>
+                            <p class="text-slate-400 text-xs mt-1">Salurkan kepedulian Anda dalam gerakan persahabatan kemanusiaan yang setara.</p>
                         </div>
                         <div class="text-xs text-slate-300 bg-slate-800/80 px-3.5 py-2 rounded-xl border border-slate-700/80 self-start sm:self-auto">
                             <i class="bi bi-clock-history text-brand mr-1"></i> Proses ± 3 Menit
@@ -335,13 +361,13 @@
 
                     <!-- Step Progress Indicator -->
                     <div class="mt-8 grid grid-cols-3 gap-2">
-                        <div id="step-indicator-1" class="flex flex-col items-center p-2 rounded-xl border transition-all text-center">
+                        <div id="step-indicator-1" class="flex flex-col items-center p-2 rounded-xl border border-brand bg-brand/10 text-brand text-center transition-all">
                             <span class="w-7 h-7 rounded-full bg-brand text-white font-bold text-xs flex items-center justify-center mb-1">1</span>
                             <span class="text-[11px] font-semibold text-white">Data Diri</span>
                         </div>
                         <div id="step-indicator-2" class="flex flex-col items-center p-2 rounded-xl border border-slate-800 text-slate-500 text-center transition-all">
                             <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 font-bold text-xs flex items-center justify-center mb-1">2</span>
-                            <span class="text-[11px] font-semibold">Minat & Keahlian</span>
+                            <span class="text-[11px] font-semibold">Divisi & Keahlian</span>
                         </div>
                         <div id="step-indicator-3" class="flex flex-col items-center p-2 rounded-xl border border-slate-800 text-slate-500 text-center transition-all">
                             <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-400 font-bold text-xs flex items-center justify-center mb-1">3</span>
@@ -353,7 +379,7 @@
                 <!-- FORM BODY -->
                 <form id="formRelawan" class="p-6 sm:p-8 space-y-6" onsubmit="handleFormSubmit(event)">
                     
-                    <!-- STEP 1: DATA DIRI -->
+                    <!-- STEP 1 -->
                     <div id="step-1" class="space-y-4">
                         <h3 class="text-base font-extrabold text-slate-900 border-b pb-2 flex items-center space-x-2">
                             <i class="bi bi-person-vcard text-brand"></i>
@@ -363,12 +389,12 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1.5">Nama Lengkap *</label>
-                                <input type="text" id="namaLengkap" required placeholder="Contoh: Ahmad Subagja" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
+                                <input type="text" id="namaLengkap" required placeholder="Contoh: Rian Utama" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1.5">NIK / Nomor ID Identitas *</label>
-                                <input type="number" id="nik" required placeholder="16 digit No. KTP / Kartu Pelajar" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
+                                <input type="number" id="nik" required placeholder="16 digit No. KTP" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
                             </div>
 
                             <div>
@@ -386,7 +412,7 @@
                             </div>
 
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-1.5">No. WhatsApp / HP Active *</label>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">No. WhatsApp Aktif *</label>
                                 <input type="tel" id="noHp" required placeholder="08123456789" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
                             </div>
 
@@ -397,68 +423,68 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Domisili / Kota Tempat Tinggal *</label>
-                            <input type="text" id="domisili" required placeholder="Contoh: Kota Bekasi / Jakarta Timur" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Domisili / Wilayah Kerja *</label>
+                            <input type="text" id="domisili" required placeholder="Contoh: Kota Bekasi / Jakarta / Wilayah Binaan" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition">
                         </div>
 
                         <div class="pt-4 flex justify-end">
                             <button type="button" onclick="goToStep(2)" class="px-6 py-2.5 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-sm shadow-brand transition">
-                                Lanjut: Minat Divisi <i class="bi bi-arrow-right ml-1"></i>
+                                Lanjut: Pilih Divisi <i class="bi bi-arrow-right ml-1"></i>
                             </button>
                         </div>
                     </div>
 
-                    <!-- STEP 2: MINAT & KEAHLIAN -->
+                    <!-- STEP 2 -->
                     <div id="step-2" class="space-y-4 hidden">
                         <h3 class="text-base font-extrabold text-slate-900 border-b pb-2 flex items-center space-x-2">
                             <i class="bi bi-stars text-brand"></i>
-                            <span>Langkah 2: Divisi & Pengalaman</span>
+                            <span>Langkah 2: Divisi & Keahlian</span>
                         </h3>
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1.5">Pilihan Divisi Utama *</label>
                             <select id="divisiUtama" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition bg-white">
-                                <option value="">-- Pilih Divisi Prioritas --</option>
-                                <option value="Pendidikan & Pengajaran">Pendidikan & Pengajaran</option>
-                                <option value="Bencana & Tanggap Darurat">Bencana & Tanggap Darurat</option>
-                                <option value="Kesehatan Masyarakat">Kesehatan Masyarakat</option>
-                                <option value="Media, Kreatif & Fundraising">Media, Kreatif & Fundraising</option>
+                                <option value="">-- Pilih Divisi Program YSKN --</option>
+                                <option value="Karsa Kasih (Tanggap Krisis & Bencana)">Karsa Kasih (Tanggap Krisis & Bencana)</option>
+                                <option value="Lingkar Akar (Pemetaan & Pendampingan Lokal)">Lingkar Akar (Pemetaan & Pendampingan Lokal)</option>
+                                <option value="Pos Lenting (Pemberdayaan Ekonomi & Vokasi)">Pos Lenting (Pemberdayaan Ekonomi & Vokasi)</option>
+                                <option value="Bening Budi (Transparansi & Media Publik)">Bening Budi (Transparansi & Media Publik)</option>
                             </select>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-2">Keahlian Khusus yang Dimiliki (Bisa Pilih >1)</label>
+                            <label class="block text-xs font-bold text-slate-700 mb-2">Keahlian Pendukung (Bisa Pilih >1)</label>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
                                 <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
-                                    <input type="checkbox" name="skills" value="Pertolongan Pertama / Kebencanaan" class="rounded text-brand focus:ring-brand">
-                                    <span>P3K / SAR</span>
+                                    <input type="checkbox" name="skills" value="Mitigasi Bencana & P3K" class="rounded text-brand focus:ring-brand">
+                                    <span>Mitigasi & P3K</span>
                                 </label>
                                 <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
-                                    <input type="checkbox" name="skills" value="Mengajar / Facilitator" class="rounded text-brand focus:ring-brand">
-                                    <span>Mengajar / Edukasi</span>
+                                    <input type="checkbox" name="skills" value="Fasilitator Komunitas / Penyuluhan" class="rounded text-brand focus:ring-brand">
+                                    <span>Fasilitator Warga</span>
                                 </label>
                                 <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
-                                    <input type="checkbox" name="skills" value="Fotografi & Videografi" class="rounded text-brand focus:ring-brand">
-                                    <span>Foto / Video</span>
+                                    <input type="checkbox" name="skills" value="Dokumentasi & Media Kreatif" class="rounded text-brand focus:ring-brand">
+                                    <span>Media & Kreatif</span>
                                 </label>
                                 <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
-                                    <input type="checkbox" name="skills" value="Desain Grafis / Copywriting" class="rounded text-brand focus:ring-brand">
-                                    <span>Desain / Social Media</span>
+                                    <input type="checkbox" name="skills" value="Literasi Keuangan & UMKM" class="rounded text-brand focus:ring-brand">
+                                    <span>Literasi Keuangan</span>
                                 </label>
                                 <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
-                                    <input type="checkbox" name="skills" value="Manajemen Logistik / Dapur" class="rounded text-brand focus:ring-brand">
-                                    <span>Logistik / Dapur Umum</span>
+                                    <input type="checkbox" name="skills" value="Logistik & Administrasi" class="rounded text-brand focus:ring-brand">
+                                    <span>Logistik & Admin</span>
                                 </label>
                                 <label class="flex items-center space-x-2 p-2.5 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-50">
-                                    <input type="checkbox" name="skills" value="Tenaga Medis / Kesehatan" class="rounded text-brand focus:ring-brand">
-                                    <span>Kesehatan / Medis</span>
+                                    <input type="checkbox" name="skills" value="Kesehatan / Tenaga Medis" class="rounded text-brand focus:ring-brand">
+                                    <span>Tenaga Medis</span>
                                 </label>
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Pengalaman Relawan & Motivasi Singkat *</label>
-                            <textarea id="motivasi" required rows="3" placeholder="Tuliskan alasan Anda ingin bergabung dengan YSKN dan pengalaman sosial sebelumnya..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"></textarea>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Pemahaman Filosofi & Motivasi Bergabung *</label>
+                            <textarea id="motivasi" required rows="3" placeholder="Jelaskan motivasi utama Anda bergabung di YSKN..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"></textarea>
                         </div>
 
                         <div class="pt-4 flex justify-between">
@@ -466,16 +492,16 @@
                                 <i class="bi bi-arrow-left mr-1"></i> Kembali
                             </button>
                             <button type="button" onclick="goToStep(3)" class="px-6 py-2.5 rounded-xl bg-brand hover:bg-brand-dark text-white font-bold text-sm shadow-brand transition">
-                                Lanjut: Ketersediaan <i class="bi bi-arrow-right ml-1"></i>
+                                Lanjut: Komitmen <i class="bi bi-arrow-right ml-1"></i>
                             </button>
                         </div>
                     </div>
 
-                    <!-- STEP 3: KETERSEDIAAN & CONFIRMATION -->
+                    <!-- STEP 3 -->
                     <div id="step-3" class="space-y-4 hidden">
                         <h3 class="text-base font-extrabold text-slate-900 border-b pb-2 flex items-center space-x-2">
                             <i class="bi bi-calendar-check text-brand"></i>
-                            <span>Langkah 3: Komitmen Ketersediaan & Dokumen</span>
+                            <span>Langkah 3: Ketersediaan Waktu & Konfirmasi</span>
                         </h3>
 
                         <div>
@@ -489,7 +515,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Unggah Curriculum Vitae / Identitas (Opsional Simulasi)</label>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">Unggah Berkas CV / Identitas Pendukung</label>
                             <div class="border-2 border-dashed border-slate-300 rounded-2xl p-4 text-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer" onclick="document.getElementById('dokumenInput').click()">
                                 <i class="bi bi-cloud-arrow-up text-2xl text-brand"></i>
                                 <p id="fileNameDisplay" class="text-xs text-slate-600 font-medium mt-1">Klik untuk memilih file PDF / JPG (Maks. 5MB)</p>
@@ -497,12 +523,11 @@
                             </div>
                         </div>
 
-                        <!-- Persetujuan Syarat & Ketentuan -->
                         <div class="p-4 bg-brand-soft/50 rounded-2xl border border-brand/20">
                             <label class="flex items-start space-x-3 cursor-pointer">
                                 <input type="checkbox" required class="mt-1 rounded text-brand focus:ring-brand">
                                 <span class="text-xs text-slate-700 leading-relaxed">
-                                    Saya menyatakan bahwa data yang saya isikan adalah benar. Saya bersedia mematuhi Kode Etik Relawan **Yayasan Sahabat Kemanusiaan Nusantara (YSKN)** dan berkontribusi secara sukarela.
+                                    Saya menyatakan data benar, siap menjunjung tinggi kode etik relawan <strong>Yayasan Sahabat Kemanusiaan Nusantara (YSKN)</strong>, serta siap menjadi Pamong yang setara bagi masyarakat.
                                 </span>
                             </label>
                         </div>
@@ -521,7 +546,7 @@
             </div>
         </section>
 
-        <!-- SECTION: STATUS & RIWAYAT PENDAFTARAN (LOCALSTORAGE TRACKER) -->
+        <!-- SECTION: STATUS TRACKER -->
         <section id="tracker" class="scroll-mt-20">
             <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-app border border-slate-200">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4 mb-6 gap-3">
@@ -531,15 +556,14 @@
                             <span>Realtime Local Storage Tracker</span>
                         </div>
                         <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">Status Pendaftaran Anda</h2>
-                        <p class="text-xs text-slate-500">Formulir pendaftaran yang tersimpan di perangkat ini.</p>
+                        <p class="text-xs text-slate-500">Pantau status pendaftaran relawan Anda di perangkat ini.</p>
                     </div>
                     <button onclick="clearLocalStorage()" class="text-xs font-semibold text-rose-600 hover:text-rose-800 flex items-center space-x-1 self-start sm:self-auto">
                         <i class="bi bi-trash"></i>
-                        <span>Hapus Riwayat Local</span>
+                        <span>Hapus Riwayat</span>
                     </button>
                 </div>
 
-                <!-- Empty State -->
                 <div id="trackerEmptyState" class="text-center py-10 space-y-3">
                     <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto text-2xl">
                         <i class="bi bi-inbox"></i>
@@ -548,21 +572,17 @@
                     <p class="text-xs text-slate-400 max-w-sm mx-auto">Silakan isi formulir pendaftaran relawan di atas untuk memantau status secara langsung.</p>
                 </div>
 
-                <!-- Active Status Card Container -->
-                <div id="trackerDataContent" class="hidden space-y-4">
-                    <!-- Dynamic Data Inject Here -->
-                </div>
+                <div id="trackerDataContent" class="hidden space-y-4"></div>
             </div>
         </section>
 
-        <!-- SECTION: KONTAK & LOKASI YSKN -->
+        <!-- SECTION: KONTAK & LOKASI -->
         <section id="kontak" class="scroll-mt-20">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Contact Info Card -->
                 <div class="lg:col-span-1 glass-card rounded-3xl p-6 sm:p-8 shadow-app flex flex-col justify-between border border-slate-200">
                     <div>
-                        <span class="text-xs font-bold text-brand uppercase tracking-wider">Sekretariat YSKN</span>
-                        <h2 class="text-2xl font-black text-slate-900 mt-1 mb-4">Hubungi Kami</h2>
+                        <span class="text-xs font-bold text-brand uppercase tracking-wider">Sekretariat Pusat</span>
+                        <h2 class="text-2xl font-black text-slate-900 mt-1 mb-4">Kontak & Alamat</h2>
                         
                         <div class="space-y-4 text-xs sm:text-sm">
                             <div class="flex items-start space-x-3">
@@ -570,7 +590,7 @@
                                     <i class="bi bi-geo-alt"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-slate-900">Alamat Lengkap</p>
+                                    <p class="font-bold text-slate-900">Alamat Sekretariat</p>
                                     <p class="text-slate-600 mt-0.5 leading-relaxed">
                                         Jl. Taman Wisma Asri II, Blok: DD-28 No. 1, Teluk Pucung, Bekasi Utara, Kota Bekasi (17121) Indonesia
                                     </p>
@@ -582,7 +602,7 @@
                                     <i class="bi bi-whatsapp"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-slate-900">WhatsApp / Telepon</p>
+                                    <p class="font-bold text-slate-900">WhatsApp Resmi</p>
                                     <a href="https://wa.me/628132220572" target="_blank" class="text-slate-600 hover:text-emerald-600 font-medium">
                                         +62 813-2220-572
                                     </a>
@@ -600,21 +620,19 @@
                                     </a>
                                 </div>
                             </div>
-
-                            <div class="flex items-start space-x-3">
+                        					
+					<div class="flex items-start space-x-3">
                                 <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg shrink-0 mt-0.5">
                                     <i class="bi bi-globe"></i>
                                 </div>
                                 <div>
                                     <p class="font-bold text-slate-900">Official Website</p>
-                                    <a href="https://www.yskn.or.id" target="_blank" rel="noopener" class="text-brand font-semibold hover:underline">
+                                    <a href="https://www.yskn.or.id" target="_blank" rel="noopener" class="text-slate-600 hover:text-brand font-medium">
                                         www.yskn.or.id
                                     </a>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
+							</div>
+                        
                     <div class="pt-6 mt-6 border-t border-slate-200">
                         <a href="https://maps.google.com/?q=Jl.+Taman+Wisma+Asri+II,+Blok+DD-28+No.+1,+Teluk+Pucung,+Bekasi+Utara" target="_blank" rel="noopener" class="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center space-x-2 transition shadow-lg">
                             <i class="bi bi-map"></i>
@@ -623,7 +641,6 @@
                     </div>
                 </div>
 
-                <!-- Google Maps Embed Container -->
                 <div class="lg:col-span-2 rounded-3xl overflow-hidden shadow-app border border-slate-200 min-h-[320px] bg-slate-200 relative">
                     <iframe 
                         title="Peta Lokasi YSKN Bekasi" 
@@ -646,15 +663,15 @@
         </footer>
     </main>
 
-    <!-- MOBILE BOTTOM NAVIGATION (App-Style Experience) -->
+    <!-- MOBILE BOTTOM NAVIGATION -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-slate-200 px-3 py-2 z-50 flex justify-around items-center shadow-lg">
         <a href="#beranda" onclick="setActiveNav('beranda')" id="mob-beranda" class="flex flex-col items-center py-1 px-3 text-slate-500 hover:text-brand transition text-center">
             <i class="bi bi-house-door text-xl leading-none"></i>
             <span class="text-[10px] font-semibold mt-1">Beranda</span>
         </a>
-        <a href="#divisi" onclick="setActiveNav('divisi')" id="mob-divisi" class="flex flex-col items-center py-1 px-3 text-slate-500 hover:text-brand transition text-center">
-            <i class="bi bi-grid-1x2 text-xl leading-none"></i>
-            <span class="text-[10px] font-semibold mt-1">Divisi</span>
+        <a href="#filosofi" onclick="setActiveNav('filosofi')" id="mob-filosofi" class="flex flex-col items-center py-1 px-3 text-slate-500 hover:text-brand transition text-center">
+            <i class="bi bi-shield-heart text-xl leading-none"></i>
+            <span class="text-[10px] font-semibold mt-1">Filosofi</span>
         </a>
         <a href="#pendaftaran" onclick="setActiveNav('pendaftaran')" id="mob-pendaftaran" class="flex flex-col items-center py-1 px-3 text-brand transition text-center font-bold">
             <div class="w-10 h-10 -mt-5 rounded-full bg-brand text-white flex items-center justify-center text-lg shadow-brand border-2 border-white">
@@ -678,39 +695,33 @@
             <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
                 <i class="bi bi-check-circle-fill"></i>
             </div>
-            <h3 class="text-xl font-extrabold text-slate-900">Pendaftaran Berhasil!</h3>
+            <h3 class="text-xl font-extrabold text-slate-900">Pendaftaran Relawan Berhasil!</h3>
             <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-                Terima kasih telah mendaftar sebagai relawan **YSKN**. Data Anda telah disimpan. Tim kami akan menghubungi Anda melalui WhatsApp / Email untuk tahap verifikasi.
+                Terima kasih telah mendaftar sebagai relawan <b>YSKN</b>. Data Anda telah tersimpan dengan prinsip <b>Bening Budi</b>. Tim kami akan segera menghubungi Anda.
             </p>
 
-            <div id="modalDataSummary" class="mt-4 p-3.5 bg-slate-50 rounded-2xl text-left border border-slate-200 text-xs space-y-1.5">
-                <!-- Summary Inject -->
-            </div>
+            <div id="modalDataSummary" class="mt-4 p-3.5 bg-slate-50 rounded-2xl text-left border border-slate-200 text-xs space-y-1.5"></div>
 
-            <div class="mt-6 flex flex-col sm:flex-row gap-2">
+            <div class="mt-6">
                 <button onclick="closeModalAndGoTracker()" class="w-full py-3 rounded-xl bg-brand text-white font-bold text-xs shadow-brand hover:bg-brand-dark transition">
-                    Lihat Status Saya
+                    Lihat Status Pendaftaran Saya
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT -->
     <script>
-        // State Management
         let currentStep = 1;
         const LOCAL_STORAGE_KEY = 'YSKN_RELAWAN_REGISTRATION';
 
-        // Initialize on Load
         window.addEventListener('load', () => {
             renderTrackerData();
             setActiveNav('beranda');
         });
 
-        // Function to switch form steps
         function goToStep(step) {
             if (step > currentStep) {
-                // Basic Validation before advancing
                 if (currentStep === 1) {
                     const nama = document.getElementById('namaLengkap').value;
                     const nik = document.getElementById('nik').value;
@@ -718,7 +729,7 @@
                     const email = document.getElementById('email').value;
 
                     if (!nama || !nik || !noHp || !email) {
-                        alert('Harap lengkapi seluruh data identitas wajib pada Langkah 1 terlebih dahulu.');
+                        alert('Harap lengkapi identitas wajib pada Langkah 1.');
                         return;
                     }
                 }
@@ -726,22 +737,18 @@
                     const divisi = document.getElementById('divisiUtama').value;
                     const motivasi = document.getElementById('motivasi').value;
                     if (!divisi || !motivasi) {
-                        alert('Harap pilih divisi utama dan tuliskan motivasi singkat Anda.');
+                        alert('Harap pilih divisi dan tuliskan pemahaman filosofi Anda.');
                         return;
                     }
                 }
             }
 
-            // Hide all steps
             document.getElementById('step-1').classList.add('hidden');
             document.getElementById('step-2').classList.add('hidden');
             document.getElementById('step-3').classList.add('hidden');
 
-            // Show current step
             document.getElementById(`step-${step}`).classList.remove('hidden');
             currentStep = step;
-
-            // Update Indicators
             updateStepIndicators(step);
         }
 
@@ -761,15 +768,6 @@
             }
         }
 
-        // Division selection from cards
-        function selectDivisiAndScroll(divisiName) {
-            document.getElementById('divisiUtama').value = divisiName;
-            const target = document.getElementById('pendaftaran');
-            target.scrollIntoView({ behavior: 'smooth' });
-            goToStep(2);
-        }
-
-        // File Selection Feedback
         function handleFileSelected(event) {
             const file = event.target.files[0];
             if (file) {
@@ -778,17 +776,14 @@
             }
         }
 
-        // Form Submit Handler
         function handleFormSubmit(e) {
             e.preventDefault();
 
-            // Collect Checkboxes
             const selectedSkills = [];
             document.querySelectorAll('input[name="skills"]:checked').forEach(cb => {
                 selectedSkills.push(cb.value);
             });
 
-            // Generate Registration ID
             const regId = 'YSKN-' + Math.floor(100000 + Math.random() * 900000);
             const today = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
 
@@ -797,22 +792,15 @@
                 tanggal: today,
                 nama: document.getElementById('namaLengkap').value,
                 nik: document.getElementById('nik').value,
-                tglLahir: document.getElementById('tanggalLahir').value,
-                jk: document.getElementById('jenisKelamin').value,
                 hp: document.getElementById('noHp').value,
                 email: document.getElementById('email').value,
-                domisili: document.getElementById('domisili').value,
                 divisi: document.getElementById('divisiUtama').value,
-                skills: selectedSkills,
-                motivasi: document.getElementById('motivasi').value,
                 ketersediaan: document.getElementById('ketersediaan').value,
-                status: 'Terverifikasi Sementaras / Menunggu Wawancara'
+                status: 'Terverifikasi (Menunggu Orientasi Pamong)'
             };
 
-            // Save to LocalStorage
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
 
-            // Render Modal Summary
             document.getElementById('modalDataSummary').innerHTML = `
                 <p><strong>ID Pendaftaran:</strong> <span class="text-brand font-mono">${formData.id}</span></p>
                 <p><strong>Nama:</strong> ${formData.nama}</p>
@@ -820,10 +808,7 @@
                 <p><strong>Status:</strong> <span class="text-emerald-600 font-semibold">${formData.status}</span></p>
             `;
 
-            // Display Modal
             document.getElementById('successModal').classList.remove('hidden');
-
-            // Refresh Tracker
             renderTrackerData();
         }
 
@@ -833,7 +818,6 @@
             setActiveNav('tracker');
         }
 
-        // Render LocalStorage Data
         function renderTrackerData() {
             const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
             const emptyState = document.getElementById('trackerEmptyState');
@@ -853,11 +837,11 @@
                 <div class="bg-slate-900 text-white rounded-2xl p-5 border border-slate-800 shadow-md">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-3 mb-3 gap-2">
                         <div>
-                            <span class="text-[10px] uppercase tracking-wider text-slate-400 font-bold block">Nomor Registrasi</span>
+                            <span class="text-[10px] uppercase tracking-wider text-slate-400 font-bold block">Nomor Registrasi Pamong</span>
                             <span class="text-lg font-black text-brand font-mono">${data.id}</span>
                         </div>
                         <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full text-xs font-semibold">
-                            <i class="bi bi-clock-history mr-1"></i> Data Tersimpan Aktiv
+                            <i class="bi bi-shield-check mr-1"></i> Terdaftar di Bening Budi System
                         </span>
                     </div>
 
@@ -867,7 +851,7 @@
                             <p class="font-bold text-white">${data.nama}</p>
                         </div>
                         <div>
-                            <p class="text-slate-400 text-[11px]">Divisi Dipilih:</p>
+                            <p class="text-slate-400 text-[11px]">Divisi Pilihan:</p>
                             <p class="font-bold text-brand-light">${data.divisi}</p>
                         </div>
                         <div>
@@ -875,33 +859,32 @@
                             <p class="font-bold text-white">${data.hp}</p>
                         </div>
                         <div>
-                            <p class="text-slate-400 text-[11px]">Ketersediaan Waktu:</p>
+                            <p class="text-slate-400 text-[11px]">Ketersediaan:</p>
                             <p class="font-bold text-white">${data.ketersediaan}</p>
                         </div>
                     </div>
 
                     <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs">
                         <span class="text-slate-400">Tanggal Daftar: ${data.tanggal}</span>
-                        <a href="https://wa.me/628132220572?text=Halo%20YSKN,%20saya%20sudah%20mendaftar%20relawan%20dengan%20ID%20${data.id}" target="_blank" class="text-emerald-400 font-bold hover:underline flex items-center space-x-1">
+                        <a href="https://wa.me/628132220572?text=Halo%20Admin%20YSKN,%20saya%20sudah%20mendaftar%20sebagai%20Pamong%20dengan%20ID%20${data.id}" target="_blank" class="text-emerald-400 font-bold hover:underline flex items-center space-x-1">
                             <i class="bi bi-whatsapp"></i>
-                            <span>Konfirmasi ke WA Admin</span>
+                            <span>Konfirmasi ke Admin</span>
                         </a>
                     </div>
                 </div>
             `;
         }
 
-        // Clear LocalStorage Handler
         function clearLocalStorage() {
-            if (confirm('Apakah Anda yakin ingin menghapus data riwayat pendaftaran relawan di perangkat ini?')) {
+            if (confirm('Hapus riwayat pendaftaran dari perangkat ini?')) {
                 localStorage.removeItem(LOCAL_STORAGE_KEY);
                 renderTrackerData();
             }
         }
 
-        // Active Nav Indicator Highlight
         function setActiveNav(sectionId) {
-            const navIds = ['beranda', 'divisi', 'pendaftaran', 'tracker', 'kontak'];
+            const navIds = ['beranda', 'filosofi', 'program', 'pendaftaran', 'tracker', 'kontak'];
+            navIds.id = sectionId;
             navIds.forEach(id => {
                 const mobEl = document.getElementById(`mob-${id}`);
                 const sideEl = document.getElementById(`side-${id}`);
